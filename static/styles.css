@@ -1,17 +1,29 @@
+header > ul, header > div {
+    padding: 0px 20px;
+}
+
 nav > ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 20px;
     overflow: hidden;
     background-color: #333;
 }
 
-nav > ul > li{
+nav > ul > li {
     float: right;
+    font-size: 28px;
+    height: 90px;
+    border-left: 1px solid #bbb;
 }
 
 nav > ul > li:first-child {
     float: left;
+    font-size: 42px;
+    font-family: "Birthstone", cursive;
+    font-weight: bold;
+    text-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+    border-left: none;
 }
 
 nav > ul > li > a {
@@ -20,6 +32,7 @@ nav > ul > li > a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    height: 100%;
 }
 
 nav > ul > li > a:hover {
@@ -30,9 +43,12 @@ nav > ul > li.active > a {
     background-color: #4CAF50;
 }
 
-.logo {
-    font-size: 42px;
-    font-family: "Birthstone", cursive;
-    font-weight: bold;
-    text-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.welcome img {
+    height: 30px;
 }
