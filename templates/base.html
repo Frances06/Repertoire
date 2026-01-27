@@ -13,7 +13,13 @@
     <header>
         <div class="welcome">
             <h1>Welcome to My Portfolio</h1>
-            <img src="{{ url_for('static', filename='images/contrast.svg') }}">
+            <div style="display: inline-block; position: relative;">
+                <img src="{{ url_for('static', filename='images/contrast.svg') }}" alt="change contrast" class="contrast">
+                <div class="contrast-dropdown">
+                    <button onclick="setContrast('normal')">Normal</button>
+                    <button onclick="setContrast('high')">High Contrast</button>
+                </div>
+            </div>
         </div>
         <nav>
             <ul>

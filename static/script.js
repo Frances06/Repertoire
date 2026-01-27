@@ -293,3 +293,8 @@ progressContainer.addEventListener("click", (e) => {
     const el = document.getElementById("playlist");
     el.style.display = el.style.display === "none" ? "block" : "none";
   }
+
+  function setContrast(mode) {
+    document.documentElement.setAttribute('data-contrast', mode);
+    localStorage.setItem('contrast-mode', mode);
+}

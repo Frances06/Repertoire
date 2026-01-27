@@ -93,10 +93,16 @@ nav > ul > li.active > a {
     color: white;
     border-radius: 50%;
     cursor: pointer;
+    box-shadow: 5px 7px #226126;
 }
 .controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
     background: #153B16;
 }
+
+.controls button:active, .file-btn:active, #loop:active {
+    box-shadow: 2px 3px #226126;
+    transform: translateY(2px);
+} 
 
 .player ul {
     list-style: none;
@@ -156,6 +162,7 @@ nav > ul > li.active > a {
     border-radius: 5px;
     cursor: pointer;
     margin: 20px auto;
+    box-shadow: 5px 7px rgba(126, 129, 126, 0.5);
 }
 
 #progress {
@@ -177,3 +184,56 @@ nav > ul > li.active > a {
     color: white;
 }
 
+.contrast {
+    cursor: pointer;
+}
+
+.contrast:hover {
+    background:#dad8d8;
+    border: 2px solid #dad8d8;
+    border-radius: 50%;
+}
+
+/* Contrast dropdown styling */
+.contrast {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.contrast-dropdown {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--bg-color);
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    padding: 8px 0;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-right: 10px;
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contrast-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    text-align: left;
+    font-size: 14px;
+}
+
+.contrast-dropdown button:hover {
+    background-color: var(--accent-color);
+}
+
+.contrast:hover + .contrast-dropdown,
+.contrast-dropdown:hover {
+    display: block;
+}
