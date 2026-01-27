@@ -38,7 +38,8 @@ def playlist():
         if allowed_file(filename):
             files.append({
                 "title": filename.rsplit(".", 1)[0],
-                "src": f"/uploads/{filename}"
+                "src": f"/uploads/{filename}",
+                "filename": filename
             })
 
     return jsonify(files)
@@ -69,7 +70,21 @@ def upload_file():
 def uploads(filename):
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
+@app.route("/delete", methods=["POST"])
+def delete_track():
+    data = request.json
+    filename = data.get("filename")
 
+    if not filename:
+        return jsonify({"error": "No filename provided"}), 400
+
+    path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+
+    if not os.path.exists(path):
+        return jsonify({"error": "File not found"}), 404
+
+    os.remove(path)
+    return jsonify({"success": True})
 
 if __name__ == '__main__':
     app.run(debug=True)

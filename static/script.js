@@ -103,7 +103,7 @@ loadTrack(0);*/
         });
 
     // Build playlist UI
-    function buildPlaylist() {
+    /*function buildPlaylist() {
         playlistEl.innerHTML = "";
 
         tracks.forEach((track, index) => {
@@ -112,7 +112,61 @@ loadTrack(0);*/
             li.addEventListener("click", () => loadTrack(index, true));
             playlistEl.appendChild(li);
         });
-    }
+    }*/
+
+    function buildPlaylist() {
+    playlistEl.innerHTML = "";
+
+    tracks.forEach((track, index) => {
+        const li = document.createElement("li");
+
+        li.textContent = track.title;
+
+        const del = document.createElement("button");
+        del.textContent = "Delete";
+        del.addEventListener("click", (e) => {
+            e.stopPropagation();
+            deleteTrack(track);
+        });
+
+        li.appendChild(del);
+        li.addEventListener("click", () => loadTrack(index, true));
+        playlistEl.appendChild(li);
+    });
+}
+
+function deleteTrack(track) {
+    fetch("/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filename: track.filename })
+    })
+    .then(res => res.json())
+    .then(() => {
+        // Reload playlist from server
+        refreshPlaylist();
+    })
+    .catch(err => console.error("Delete failed:", err));
+}
+
+function refreshPlaylist() {
+    fetch("/api/playlist")
+        .then(res => res.json())
+        .then(data => {
+            tracks = data;
+            buildPlaylist();
+
+            if (tracks.length === 0) {
+                trackTitle.textContent = "No tracks available";
+                audio.src = "";
+                return;
+            }
+
+            // Ensure currentTrack is valid after delete
+            currentTrack = Math.min(currentTrack, tracks.length - 1);
+            loadTrack(currentTrack);
+        });
+}
 
     // Load a track
     function loadTrack(index, playNow = false) {
@@ -123,7 +177,7 @@ loadTrack(0);*/
 
         if (playNow) {
             audio.play();
-            playBtn.textContent = "⏸ Pause";
+            playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         }
     }
 
@@ -140,10 +194,10 @@ loadTrack(0);*/
 
         if (audio.paused) {
             audio.play();
-            playBtn.textContent = "⏸ Pause";
+            playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         } else {
             audio.pause();
-            playBtn.textContent = "▶ Play";
+            playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
     });
 
