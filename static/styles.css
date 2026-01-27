@@ -13,17 +13,17 @@ nav > ul {
 nav > ul > li {
     float: right;
     font-size: 28px;
-    height: 90px;
     border-left: 1px solid #bbb;
+    font-family: "Poetsen One", sans-serif;
 }
 
 nav > ul > li:first-child {
     float: left;
-    font-size: 42px;
     font-family: "Birthstone", cursive;
-    font-weight: bold;
-    text-shadow: 5px 5px rgba(0, 0, 0, 0.3);
     border-left: none;
+    /*font-size: 42px;
+    font-weight: bold;
+    text-shadow: 5px 5px rgba(0, 0, 0, 0.3);*/
 }
 
 nav > ul > li > a {
@@ -47,8 +47,61 @@ nav > ul > li.active > a {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-family: "Playwrite GB J", cursive;
+    font-weight: 400;
+    color: #507C5C;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 .welcome img {
     height: 30px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.player {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+.controls button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.controls button:hover {
+    background: #0056b3;
+}
+.player ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: left;
+}
+.player li {
+    padding: 5px;
+    cursor: pointer;
+}
+.player li.active {
+    background: #007BFF;
+    color: white;
+    border-radius: 5px;
 }

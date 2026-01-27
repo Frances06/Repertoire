@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Birthstone&display=swap" rel="stylesheet">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Poetsen+One&display=swap" rel="stylesheet"></head>
 <body>
     <header>
         <div class="welcome">
@@ -18,7 +17,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url_for('home') }}"><span class="logo">fn</span></a></li>
+                <li><a href="{{ url_for('home') }}">fn</a></li>
                 <li><a href="#">Contact</a></li>                
                 <li><a href="#">Projects</a></li>                
                 <li><a href="#">About</a></li>                
@@ -33,8 +32,21 @@
         {% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; {{ current_year }} My Portfolio</p>
+    <footer class="footer">
+        <p>&copy; <span id="current-year"></span> My Portfolio</p>
     </footer>
+    
+    <input type="file" id="upload" accept="audio/*">
+    <div class="player">
+    <h3 id="track-title">Loading...</h3>
+    <audio id="audio" preload="metadata"></audio>
+    <div class="controls">
+        <button id="prev">⏮ Prev</button>
+        <button id="play">▶ Play</button>
+        <button id="next">⏭ Next</button>
+    </div>
+    <ul id="playlist"></ul>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </body>
 </html>
