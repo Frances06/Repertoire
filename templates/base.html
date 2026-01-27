@@ -45,12 +45,16 @@
             </label>
             <h3 id="track-title" style="display: inline;">Loading...</h3>
         </div>
+        <div id="progress-container">
+            <div id="progress"></div>
+        </div>
         <audio id="audio" preload="metadata"></audio>
         <div class="controls">
             <button id="prev"><i class="fa-solid fa-backward-fast"></i></button>
             <button id="play"><i class="fa-solid fa-play"></i></button>
             <button id="next"><i class="fa-solid fa-forward-fast"></i></button>
         </div>
+        <button id="loop">🔁 Loop</button>
         <ul id="playlist"></ul>
     </div>
 <script src="{{ url_for('static', filename='script.js') }}" defer></script>

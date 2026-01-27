@@ -75,6 +75,7 @@ loadTrack(0);*/
 
     let tracks = [];
     let currentTrack = 0;
+    let loopSong = false;
 
     const audio = document.getElementById("audio");
     const trackTitle = document.getElementById("track-title");
@@ -217,10 +218,24 @@ function refreshPlaylist() {
         loadTrack(currentTrack, true);
     });
 
-    // Auto-play next track when current ends
+    // Play next track or loop when current ends
     audio.addEventListener("ended", () => {
-        nextBtn.click();
+        if (loopSong) {
+            audio.currentTime = 0;
+            audio.play();
+        } else {
+            nextBtn.click();
+        }
     });
+
+    // Loop button functionality
+    const loopBtn = document.getElementById("loop");
+
+    loopBtn.addEventListener("click", () => {
+        loopSong = !loopSong;
+        loopBtn.classList.toggle("active", loopSong);
+    });
+
 
 const uploadInput = document.getElementById("upload");
 
@@ -236,6 +251,12 @@ uploadInput.addEventListener("change", () => {
         body: formData
     })
     .then(res => res.json())
+    /*.then(data => {
+    if (data.error) {
+        alert(data.error);
+        return;
+    }
+    refreshPlaylist();})*/
     .then(() => {
         return fetch("/api/playlist");
     })
@@ -246,4 +267,20 @@ uploadInput.addEventListener("change", () => {
         loadTrack(tracks.length - 1, true); // auto-play new track
     })
     .catch(err => console.error("Upload failed:", err));
+});
+
+const progressContainer = document.getElementById("progress-container");
+const progress = document.getElementById("progress");
+
+audio.addEventListener("timeupdate", () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + "%";
+});
+
+progressContainer.addEventListener("click", (e) => {
+    const width = progressContainer.clientWidth;
+    const clickX = e.offsetX;
+    const duration = audio.duration;
+
+    audio.currentTime = (clickX / width) * duration;
 });

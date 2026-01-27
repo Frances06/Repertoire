@@ -47,6 +47,10 @@ def playlist():
 
 @app.route("/upload", methods=["POST"])
 def upload_file():
+    # limit to 15 tracks
+    if len(os.listdir(app.config["UPLOAD_FOLDER"])) >= 15:
+        return jsonify({"error": "Track limit reached (15 songs max)."}), 400
+    
     if "file" not in request.files:
         return jsonify({"error": "No file provided"}), 400
 
