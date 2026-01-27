@@ -85,7 +85,7 @@ nav > ul > li.active > a {
     position: fixed;
     bottom: 0;
 }
-.controls button, .file-btn {
+.controls button, .file-btn, #loop {
     margin: 5px;
     padding: 20px;
     border: none;
@@ -94,18 +94,30 @@ nav > ul > li.active > a {
     border-radius: 50%;
     cursor: pointer;
 }
-.controls button:hover {
+.controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
     background: #153B16;
 }
+
 .player ul {
     list-style: none;
     padding: 0;
     margin-top: 15px;
+    width: 50%;
     text-align: left;
+    display: none;        /* hidden by default */
+    margin-right: 30px;
+    margin-left: auto;
+    max-height: 6.5em;      /* ~3 <li> items, tweak as needed */
+    overflow-y: auto;       /* enables scrolling */
+}
+
+#toggle-list.active .player ul {
+    display: block;       /* show the playlist when active */
 }
 .player li {
     padding: 5px;
     cursor: pointer;
+
 }
 .player li.active {
     background: #2E7D32;
@@ -151,5 +163,17 @@ nav > ul > li.active > a {
     height: 100%;
     background: #FF9800;
     border-radius: 5px;
+}
+
+.player ul li button {
+    background: none;
+    border: none;
+    color: #2E7D32;
+    /*margin-left: 100px;*/
+    cursor: pointer;
+}
+
+.player ul li.active button {
+    color: white;
 }
 

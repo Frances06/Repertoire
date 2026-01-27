@@ -121,10 +121,14 @@ loadTrack(0);*/
     tracks.forEach((track, index) => {
         const li = document.createElement("li");
 
-        li.textContent = track.title;
+        const titleSpan = document.createElement("span");
+        titleSpan.textContent = track.title;
+        titleSpan.style.width = "95%";
+        titleSpan.style.display = "inline-block";
+        li.appendChild(titleSpan);
 
         const del = document.createElement("button");
-        del.textContent = "Delete";
+        del.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         del.addEventListener("click", (e) => {
             e.stopPropagation();
             deleteTrack(track);
@@ -284,3 +288,8 @@ progressContainer.addEventListener("click", (e) => {
 
     audio.currentTime = (clickX / width) * duration;
 });
+
+  function toggleList() {
+    const el = document.getElementById("playlist");
+    el.style.display = el.style.display === "none" ? "block" : "none";
+  }

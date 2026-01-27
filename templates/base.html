@@ -28,7 +28,6 @@
 
     <main>
         {% block content %}
-        <!-- Main content goes here -->
         {% endblock %}
     </main>
 
@@ -38,24 +37,25 @@
 
     
     <div class="player">
+        <ul id="playlist" class="dropdown-content"></ul>
         <div class="line">
             <label class="file-btn">
                 <i class="fa-solid fa-upload"></i>
                 <input type="file" id="upload" accept="audio/*">
             </label>
-            <h3 id="track-title" style="display: inline;">Loading...</h3>
+            <h3 id="track-title">Loading...</h3>
         </div>
         <div id="progress-container">
             <div id="progress"></div>
         </div>
         <audio id="audio" preload="metadata"></audio>
         <div class="controls">
+            <button id="toggle-list" onclick="toggleList()"><i class="fa-solid fa-list-ul"></i></button>
             <button id="prev"><i class="fa-solid fa-backward-fast"></i></button>
             <button id="play"><i class="fa-solid fa-play"></i></button>
             <button id="next"><i class="fa-solid fa-forward-fast"></i></button>
+            <button id="loop"><i class="fa-solid fa-repeat"></i></button>
         </div>
-        <button id="loop">🔁 Loop</button>
-        <ul id="playlist"></ul>
     </div>
 <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </body>
