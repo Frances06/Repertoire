@@ -244,3 +244,39 @@ nav > ul > li.active > a {
 .contrast-dropdown:hover {
     display: block;
 }
+
+@media screen and (max-width: 600px) {
+    nav > ul > li {
+        float: none;
+        border: none;
+    }
+
+    nav > ul > li:first-child {
+        display: none;
+    }
+  }
+
+@media screen and (max-width: 800px) {
+    .file-btn {
+        margin-top: -15px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .contrast-dropdown {
+        right: -25px;
+        top: 85%;
+        transform: translateY(0);
+        background: rgba(255, 255, 255, 0.9);
+    }
+    .contrast-dropdown button {
+        display: block;
+        width: 100%;
+        border-left:none;
+        border-bottom: 1px solid #507C5C;
+    }
+
+    .contrast-dropdown button:last-child {
+        border-bottom: none;
+    } 
+}
