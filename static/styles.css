@@ -204,7 +204,7 @@ nav > ul > li.active > a {
 .contrast-dropdown {
     display: none;
     position: absolute;
-    right: 100%;
+    right: 60%;
     top: 50%;
     transform: translateY(-50%);
     background-color: var(--bg-color);
@@ -218,15 +218,22 @@ nav > ul > li.active > a {
 }
 
 .contrast-dropdown button {
-    display: block;
-    width: 100%;
+    display: inline;
+    /*display: block;
+    width: 100%;*/
     padding: 8px 16px;
     background: none;
     border: none;
+    border-left: 1px solid #507C5C;
     cursor: pointer;
     color: var(--text-color);
+    font-weight: bold;
     text-align: left;
     font-size: 14px;
+}
+
+.contrast-dropdown button:first-child {
+    border-left: none;
 }
 
 .contrast-dropdown button:hover {
