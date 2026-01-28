@@ -294,7 +294,12 @@ progressContainer.addEventListener("click", (e) => {
     el.style.display = el.style.display === "none" ? "block" : "none";
   }
 
-  function setContrast(mode) {
-    document.documentElement.setAttribute('data-contrast', mode);
-    localStorage.setItem('contrast-mode', mode);
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+});

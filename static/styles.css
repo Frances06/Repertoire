@@ -1,15 +1,45 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --accent-color: #CFF09E;
+    --accent-text: #2E7D32;
+}
+
+
 body {
     margin: 0;
     font-family: "Nunito", sans-serif;
     font-size: 18px;
 }
 
-body.dark-mode {
+/*body.dark-mode {
     --bg-color: #121212;
     --text-color: #e0e0e0;
     --accent-color: #1f1f1f;
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+body.high-contrast-mode {
+    --bg-color: #0f0f0f;
+    --text-color: #ececec;
+    --accent-color: #1f1f1f;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}    
+*/
+
+:root[data-theme="dark"] {
+    --bg-color: #0f0f0f;
+    --text-color: #ececec;
+    --accent-color: #1f1f1f;
+    --accent-text: #ffffff;
+}
+
+:root[data-theme="high-contrast"] {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #ffff00; /* yellow */
+    --accent-text: #000000;
 }
 
 
@@ -85,8 +115,12 @@ nav > ul > li.active > a {
 }
 
 .player {
-    background: #CFF09E;
-    color : #2E7D32;
+    /*background: #CFF09E;
+    color : #2E7D32;*/
+    background: var(--accent-color);
+    color: var(--accent-text);
+
+
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
