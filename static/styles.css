@@ -15,6 +15,7 @@
     --progress-bar-shadow: 0.5;
     --progress-color: #FF9800;
     --current-song-color: #2E7D32;
+    --footer-link: #507C5C;
 }
 
 body {
@@ -22,6 +23,10 @@ body {
     margin: 0;
     font-family: "Nunito", sans-serif;
     font-size: 18px;
+}
+
+main {
+    padding: 30px 0px;
 }
 
 /*body.dark-mode {
@@ -57,6 +62,7 @@ body.high-contrast-mode {
     --progress-bar-shadow: 0.05;
     --progress-color: #FF9800;
     --current-song-color: #2E7D32;
+    --footer-link: #507C5C;
 }
 
 :root[data-theme="high-contrast"] {
@@ -76,6 +82,7 @@ body.high-contrast-mode {
     --progress-bar-shadow: 0.5;
     --progress-color: #333;
     --current-song-color: #1c1c1c;
+    --footer-link: #85b172;
 }
 
 .contrast {
@@ -86,6 +93,9 @@ body.high-contrast-mode {
     content: url("/static/images/contrast-alt.svg");
 }
 
+:root[data-theme="dark"] main, :root[data-theme="high-contrast"] main {
+    color: #fff
+}
 
 header > ul, header > div {
     padding: 0px 20px;
@@ -129,6 +139,10 @@ nav > ul > li > a:hover {
     background-color: #111;
 }
 
+:root[data-theme="high-contrast"] nav > ul > li > a:hover {
+    color: #fff;
+}
+
 nav > ul > li.active > a {
     background-color: #4CAF50;
 }
@@ -158,6 +172,18 @@ nav > ul > li.active > a {
     width: 100%;
 }
 
+.footer a {
+    color: #ffffff;
+}
+
+.footer a:visited {
+    color: #6ee687;
+}
+
+.footer hr {
+    width: 80%;
+}
+
 .player {
     /*background: #CFF09E;
     color : #2E7D32;*/
@@ -185,6 +211,11 @@ nav > ul > li.active > a {
 }
 .controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
     background: #153B16;
+}
+
+
+:root[data-theme="high-contrast"] .controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
+    background: #1b1b1b;
 }
 
 .controls button:active, #loop:active {
@@ -248,7 +279,8 @@ nav > ul > li.active > a {
 }
 
 #progress-container {
-    width: 600px;
+    width: 80%;
+    max-width: 600px;
     height: 10px;
     background: var(--progress-bar-color);
     border: var(--progress-bar-border);
@@ -330,7 +362,8 @@ nav > ul > li.active > a {
 }
 
 .contrast-dropdown button:hover {
-    background-color: var(--accent-color);
+    background-color: #ddd;
+    color: #333;
 }
 
 .contrast:hover + .contrast-dropdown,
@@ -339,13 +372,22 @@ nav > ul > li.active > a {
 }
 
 @media screen and (max-width: 600px) {
+    nav > ul {
+        display: flex;
+        flex-direction: column-reverse;
+    }
     nav > ul > li {
         float: none;
-        border: none;
+        border-left: none;
+        border-bottom: 1px solid var(--nav-border);
     }
 
     nav > ul > li:first-child {
         display: none;
+    }
+
+    nav > ul > li:nth-child(2) {
+        border-bottom: none;
     }
   }
 

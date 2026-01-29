@@ -33,15 +33,17 @@
         </nav>
     </header>
 
-    <main>
-        {% block content %}
-        {% endblock %}
+    <div style="display: flex; justify-content: center;">
+        <main>
+        {% block content %}{% endblock %}
     </main>
+    </div>
 
     <footer class="footer">
-        <i class="fa-solid fa-envelope"></i> <a href="mailto:2713017@dundee.ac.uk">2713017@dundee.ac.uk</a> | phone: <a href="tel:+441382344444">+44 1382 344444</a>
+        <p><i class="fa-solid fa-envelope"></i>&emsp;<a href="mailto:2713017@dundee.ac.uk">2713017@dundee.ac.uk</a>&emsp;|&emsp; 
+        <i class="fa-solid fa-phone"></i>&emsp;<a href="tel:+447826623341">+44 7826 623341</a>
         <hr>
-        <p>&copy; <span id="current-year"></span> My Portfolio</p>
+        &copy; <span id="current-year"></span> My Portfolio</p>
     </footer>
 
     
