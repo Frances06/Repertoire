@@ -1,12 +1,20 @@
 :root {
-    --bg-color: #ffffff;
+    --page-bg: #ffffff;
     --text-color: #222222;
-    --accent-color: #CFF09E;
-    --accent-text: #2E7D32;
+    --player-color: #CFF09E;
+    --player-text: #2E7D32;
+    --button-color: #2E7D32;
+    --button-box-shadow: #226126;
+    --button-border: none;
+    --progress-bar-color: #333;
+    --progress-bar-border: none;
+    --progress-bar-shadow: 0.5;
+    --progress-color: #FF9800;
+    --current-song-color: #2E7D32;
 }
 
-
 body {
+    background-color: var(--page-bg);
     margin: 0;
     font-family: "Nunito", sans-serif;
     font-size: 18px;
@@ -29,19 +37,42 @@ body.high-contrast-mode {
 */
 
 :root[data-theme="dark"] {
-    --bg-color: #0f0f0f;
+    --page-bg: #0f0f0f;
     --text-color: #ececec;
-    --accent-color: #1f1f1f;
-    --accent-text: #ffffff;
+    --player-color: #1f1f1f;
+    --player-text: #ffffff;
+    --button-color: #2E7D32;
+    --button-box-shadow: #226126;
+    --button-border: none;
+    --progress-bar-color: #525252;
+    --progress-bar-border: none;
+    --progress-bar-shadow: 0.05;
+    --progress-color: #FF9800;
+    --current-song-color: #2E7D32;
 }
 
 :root[data-theme="high-contrast"] {
-    --bg-color: #000000;
+    --page-bg: #000000;
     --text-color: #ffffff;
-    --accent-color: #ffff00; /* yellow */
-    --accent-text: #000000;
+    --player-color: #6ee687; /* green */
+    --player-text: #1c1c1c;
+    --button-color: #333;
+    --button-box-shadow: #141414;
+    --button-border: 2px solid #e1e1e1;
+    --progress-bar-color: #e1e1e1;
+    --progress-bar-border: 2px solid #333;
+    --progress-bar-shadow: 0.5;
+    --progress-color: #333;
+    --current-song-color: #1c1c1c;
 }
 
+.contrast {
+    content: url("/static/images/contrast.svg") ;
+}
+
+:root[data-theme="high-contrast"] .contrast {
+    content: url("/static/images/contrast-alt.svg");
+}
 
 
 header > ul, header > div {
@@ -117,8 +148,8 @@ nav > ul > li.active > a {
 .player {
     /*background: #CFF09E;
     color : #2E7D32;*/
-    background: var(--accent-color);
-    color: var(--accent-text);
+    background: var(--player-color);
+    color: var(--player-text);
 
 
     padding: 20px;
@@ -132,21 +163,25 @@ nav > ul > li.active > a {
 .controls button, .file-btn, #loop {
     margin: 5px;
     padding: 20px;
-    border: none;
-    background: #2E7D32;
+    border: var(--button-border);
+    background: var(--button-color);
     color: white;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 5px 7px #226126;
+    box-shadow: 5px 7px var(--button-box-shadow);
 }
 .controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
     background: #153B16;
 }
 
-.controls button:active, .file-btn:active, #loop:active {
-    box-shadow: 2px 3px #226126;
+.controls button:active, #loop:active {
+    box-shadow: 2px 3px var(--button-box-shadow);
     transform: translateY(2px);
 } 
+.file-btn:active {
+    box-shadow: 2px 3px var(--button-box-shadow);
+    transform: translateY(-24px);
+}
 
 .player ul {
     list-style: none;
@@ -170,7 +205,7 @@ nav > ul > li.active > a {
 
 }
 .player li.active {
-    background: #2E7D32;
+    background: var(--current-song-color);
     color: white;
     border-radius: 5px;
 }
@@ -202,24 +237,25 @@ nav > ul > li.active > a {
 #progress-container {
     width: 600px;
     height: 10px;
-    background: #333;
-    border-radius: 5px;
+    background: var(--progress-bar-color);
+    border: var(--progress-bar-border);
+    border-radius: 10px;
     cursor: pointer;
     margin: 20px auto;
-    box-shadow: 5px 7px rgba(126, 129, 126, 0.5);
+    box-shadow: 5px 7px rgba(126, 129, 126, var(--progress-bar-shadow));
 }
 
 #progress {
     width: 0%;
     height: 100%;
-    background: #FF9800;
+    background: var(--progress-color);
     border-radius: 5px;
 }
 
 .player ul li button {
     background: none;
     border: none;
-    color: #2E7D32;
+    color: var(--player-text);
     /*margin-left: 100px;*/
     cursor: pointer;
 }
@@ -312,6 +348,7 @@ nav > ul > li.active > a {
         top: 85%;
         transform: translateY(0);
         background: rgba(255, 255, 255, 0.9);
+        
     }
     .contrast-dropdown button {
         display: block;
