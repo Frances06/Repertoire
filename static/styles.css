@@ -29,6 +29,24 @@ main {
     padding: 30px 0px;
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible, .contrast:focus, .file-btn:focus {
+  outline: 3px solid #FF9800;
+  outline-offset: 3px;
+}
+
+:root[data-theme="high-contrast"] .file-btn:focus, :root[data-theme="high-contrast"] button:focus-visible, a:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 5px;
+}
+
+:root[data-theme="high-contrast"] .footer a:focus-visible, :root[data-theme="high-contrast"] .contrast:focus-visible {
+    outline: 3px solid #fad04b;
+    outline-offset: 3px;
+}
+
+
 /*body.dark-mode {
     --bg-color: #121212;
     --text-color: #e0e0e0;
@@ -367,7 +385,7 @@ nav > ul > li.active > a {
 }
 
 .contrast:hover + .contrast-dropdown,
-.contrast-dropdown:hover {
+.contrast-dropdown:hover, .contrast:focus-visible + .contrast-dropdown {
     display: block;
 }
 
