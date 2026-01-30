@@ -36,7 +36,8 @@ input:focus-visible, .contrast:focus, .file-btn:focus {
   outline-offset: 3px;
 }
 
-:root[data-theme="high-contrast"] .file-btn:focus, :root[data-theme="high-contrast"] button:focus-visible, a:focus-visible {
+:root[data-theme="high-contrast"] .file-btn:focus, :root[data-theme="high-contrast"] button:focus-visible, 
+a:focus-visible, #progress-container:focus-visible {
     outline: 3px solid #000;
     outline-offset: 5px;
 }

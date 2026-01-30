@@ -289,6 +289,32 @@ progressContainer.addEventListener("click", (e) => {
     audio.currentTime = (clickX / width) * duration;
 });
 
+progressContainer.addEventListener("keydown", (e) => {
+    if (!tracks.length) return;
+
+    const stepSize = 5; // seconds
+    const duration = audio.duration;
+
+    switch(e.key) {
+        case "ArrowRight":
+            e.preventDefault();
+            audio.currentTime = Math.min(audio.currentTime + stepSize, duration);
+            break;
+        case "ArrowLeft":
+            e.preventDefault();
+            audio.currentTime = Math.max(audio.currentTime - stepSize, 0);
+            break;
+        case " ":
+            e.preventDefault();
+            playBtn.click();
+            break;
+    }
+});
+
+progressContainer.setAttribute("tabindex", "0");
+progressContainer.setAttribute("role", "slider");
+progressContainer.setAttribute("aria-label", "Audio progress");
+
   function toggleList() {
     const el = document.getElementById("playlist");
     el.style.display = el.style.display === "none" ? "block" : "none";
