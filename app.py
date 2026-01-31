@@ -15,12 +15,19 @@ def allowed_file(filename):
 
 
 @app.route('/')
+@app.route('/home')
 def home():
     return render_template('base.html')
 
-@app.route('/redirect')
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/')
 def redirect_to_home():
     return redirect(url_for('home'))
+
+
 
 '''@app.route("/api/playlist")
 def playlist():

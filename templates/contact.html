@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Contact{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <div class="contact-info">
+        <div style="height: 180px">
+            <h2>Contact Information</h2>
+            <p>Email: <a href="mailto: 2713017@dundee.ac.uk">2713017@dundee.ac.uk</a></p>
+            <p>Phone: <a href="tel:+447826623341">+44 7826 623341</a></p>
+        </div>
+        <div>
+            <h2>Send a Message</h2>
+            <form action="">
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="message">Message</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

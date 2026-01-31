@@ -10,12 +10,18 @@
     --button-color: #2E7D32;
     --button-box-shadow: #226126;
     --button-border: none;
+    --button-hover: #153B16;
     --progress-bar-color: #333;
     --progress-bar-border: none;
     --progress-bar-shadow: 0.5;
     --progress-color: #FF9800;
     --current-song-color: #2E7D32;
     --footer-link: #507C5C;
+    --contact-border: #cff09e;
+    --contact-type-color: #2E7D32;
+    --contact-info-button-bg: #2E7D32;
+    --contact-info-button-text: #ffffff;
+    --contact-info-button-hover: #153B16;
 }
 
 body {
@@ -27,6 +33,9 @@ body {
 
 main {
     padding: 30px 0px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px; /* to avoid overlap with fixed player */
 }
 
 button:focus-visible,
@@ -76,12 +85,18 @@ body.high-contrast-mode {
     --button-color: #2E7D32;
     --button-box-shadow: #226126;
     --button-border: none;
+    --button-hover: #153B16;
     --progress-bar-color: #525252;
     --progress-bar-border: none;
     --progress-bar-shadow: 0.05;
     --progress-color: #FF9800;
     --current-song-color: #2E7D32;
     --footer-link: #507C5C;
+    --contact-border: #cff09e;
+    --contact-type-color: #2E7D32;
+    --contact-info-button-bg: #2E7D32;
+    --contact-info-button-text: #ffffff;
+    --contact-info-button-hover: #153B16;
 }
 
 :root[data-theme="high-contrast"] {
@@ -96,12 +111,18 @@ body.high-contrast-mode {
     --button-color: #333;
     --button-box-shadow: #141414;
     --button-border: 2px solid #e1e1e1;
+    --button-hover: #1b1b1b;
     --progress-bar-color: #e1e1e1;
     --progress-bar-border: 2px solid #333;
     --progress-bar-shadow: 0.5;
     --progress-color: #333;
     --current-song-color: #1c1c1c;
     --footer-link: #85b172;
+    --contact-border: #a8ffbb;
+    --contact-type-color: var(--text-color);
+    --contact-info-button-bg: #a8ffbb;
+    --contact-info-button-text: #000000;
+    --contact-info-button-hover: #58b86d;
 }
 
 .contrast {
@@ -185,7 +206,7 @@ nav > ul > li.active > a {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px 0px 250px 0px;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -217,6 +238,7 @@ nav > ul > li.active > a {
     width: 100%;
     position: fixed;
     bottom: 0;
+    z-index: 9999;
 }
 .controls button, .file-btn, #loop {
     margin: 5px;
@@ -229,13 +251,9 @@ nav > ul > li.active > a {
     box-shadow: 5px 7px var(--button-box-shadow);
 }
 .controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
-    background: #153B16;
+    background: var(--button-hover);
 }
 
-
-:root[data-theme="high-contrast"] .controls button:hover, .file-btn:hover, #loop:hover, #loop.active {
-    background: #1b1b1b;
-}
 
 .controls button:active, #loop:active {
     box-shadow: 2px 3px var(--button-box-shadow);
@@ -390,6 +408,63 @@ nav > ul > li.active > a {
     display: block;
 }
 
+.contact-info {
+    display: flex;
+    gap: 10%;
+}
+
+.contact-info a {
+    color: var(--contact-type-color);
+}
+
+.contact-info div {
+    border: 5px solid var(--contact-border);
+    border-radius: 20px;
+    padding: 15px 30px;
+    text-align: center;
+    min-width: 300px;
+
+}
+
+.contact-info form {
+    text-align: left;
+}
+
+.contact-info input, .contact-info textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.contact-info textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 250px;
+}
+
+.contact-info label {
+    font-weight: bold;
+}
+
+.contact-info input[type="submit"] {
+    background-color: var(--contact-info-button-bg);
+    color: var(--contact-info-button-text);
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.contact-info input[type="submit"]:hover {
+    background-color: var(--contact-info-button-hover);
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6)
+}
+
 @media screen and (max-width: 600px) {
     nav > ul {
         display: flex;
@@ -436,4 +511,15 @@ nav > ul > li.active > a {
     .contrast-dropdown button:last-child {
         border-bottom: none;
     } 
+}
+
+@media screen and (max-width: 950px) {
+    .contact-info {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-info div {
+        padding: 15px 80px;
+    }
 }
