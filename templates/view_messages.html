@@ -8,14 +8,24 @@
 </head>
 <body>
     {% block content %}
-        <h1>Messages</h1>
-        <ul>
+        <table class="messages">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+            </tr>
+
+            
             {% for message in messages %}
-                <li>
-                    <strong>{{ message[1] }}</strong> ({{ message[2] }}) - {{ message[3] }}
-                </li>
+            <tr>
+                <td>{{ message[0] }}</td>
+                <td>{{ message[1] }}</td>
+                <td>{{ message[2] }}</td>
+                <td>{{ message[3] }}</td>
+            </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% endblock %}
 </body>
 </html>

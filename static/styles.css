@@ -22,6 +22,8 @@
     --contact-info-button-bg: #2E7D32;
     --contact-info-button-text: #ffffff;
     --contact-info-button-hover: #153B16;
+    --table-color: var(--contact-border);
+    --table-text: var(--text-color);
 }
 
 body {
@@ -97,6 +99,8 @@ body.high-contrast-mode {
     --contact-info-button-bg: #2E7D32;
     --contact-info-button-text: #ffffff;
     --contact-info-button-hover: #153B16;
+    --table-color: var(--contact-border);
+    --table-text: var(--page-bg);
 }
 
 :root[data-theme="high-contrast"] {
@@ -123,6 +127,8 @@ body.high-contrast-mode {
     --contact-info-button-bg: #a8ffbb;
     --contact-info-button-text: #000000;
     --contact-info-button-hover: #58b86d;
+    --table-color: var(--contact-border);
+    --table-text: var(--page-bg);
 }
 
 .contrast {
@@ -465,6 +471,23 @@ nav > ul > li.active > a {
     text-align: right;
     font-size: 12px;
     margin: 0;
+}
+
+.messages {
+    min-width: 454px;
+    width: 80%;
+    border-spacing: 5px;
+}
+
+.messages th, td {
+    border: 3px solid var(--contact-border);
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.messages th {
+    background-color: var(--table-color);
+    color: var(--table-text);
 }
 
 @media screen and (max-width: 600px) {
