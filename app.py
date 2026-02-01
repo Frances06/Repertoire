@@ -1,9 +1,12 @@
 import os
 import sqlite3
 from flask import Flask, url_for, redirect, render_template, jsonify, request, send_from_directory
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+import argon2
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '{}'.format(os.urandom(24)) # Secret key for session management
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"mp3", "wav", "ogg"}
@@ -53,6 +56,7 @@ def add_message():
     return { "status": status }
     
 @app.route('/view-messages')
+@login_required # Ensure only logged-in admin can view messages
 def view_messages():
     conn = sqlite3.connect('messages.db')
     c = conn.cursor()
@@ -133,6 +137,28 @@ def delete_track():
 
     os.remove(path)
     return jsonify({"success": True})
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    conn = sqlite3.connect('admin.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM admin WHERE username = ?', (username,))
+    admin = c.fetchone()
+    conn.close()
+
+    if admin:
+        ph = argon2.PasswordHasher()
+        try:
+            ph.verify(admin[3], password)  # admin[3] is the password_hash column
+            login_user(admin[1])  # admin[1] is the username column
+            return jsonify({"success": True})
+        except argon2.exceptions.VerifyMismatchError:
+            return jsonify({"error": "Invalid credentials"}), 401
+
+    return jsonify({"error": "Invalid credentials"}), 401
 
 if __name__ == '__main__':
     app.run(debug=True)
