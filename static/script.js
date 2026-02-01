@@ -329,3 +329,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", savedTheme);
 });
+
+const form = document.getElementById("contact-form");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  fetch(form.dataset.url, {
+    method: "POST",
+    body: new FormData(form)
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.status);
+  });
+});
+
+const textarea = document.getElementById("message");
+const counter = document.getElementById("char-count");
+
+counter.textContent = textarea.value.length;
+
+textarea.addEventListener("input", () => {
+  counter.textContent = textarea.value.length;
+});

@@ -17,13 +17,14 @@
         </div>
         <div>
             <h2>Send a Message</h2>
-            <form action="">
+            <form id="contact-form" data-url="{{ url_for('add_message') }}"> <!-- action="{{ url_for('add_message') }}"  method="post" -->
                 <label for="name">Name</label><br>
                 <input type="text" id="name" name="name" required><br><br>
                 <label for="email">Email</label><br>
                 <input type="email" id="email" name="email" required><br><br>
                 <label for="message">Message</label><br>
-                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                <textarea id="message" name="message" rows="4" minlength="2" maxlength="2500" required></textarea><br><br>
+                <p class="char-counter"><span id="char-count">0</span>/2500</p>
                 <input type="submit" value="Send">
             </form>
         </div>

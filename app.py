@@ -1,4 +1,5 @@
 import os
+import sqlite3
 from flask import Flask, url_for, redirect, render_template, jsonify, request, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -22,6 +23,42 @@ def home():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/contact/add_message', methods=['POST'])
+def add_message():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    message = request.form.get('message')
+
+    try:
+        conn = sqlite3.connect('messages.db')
+        c = conn.cursor()
+        c.execute('''CREATE TABLE IF NOT EXISTS messages
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    message TEXT NOT NULL)''')
+        
+        c.execute('INSERT INTO messages (name, email, message) VALUES (?, ?, ?)', (name, email, message))
+        conn.commit()
+        rows = c.execute('SELECT * FROM messages').fetchall()
+        print(rows)  # For debugging purposes
+        conn.close()
+
+        status = "Message sent successfully!"
+
+    except:
+        status = "Sorry, there was an error sending your message./nPlease try again."
+
+    return { "status": status }
+    
+@app.route('/view-messages')
+def view_messages():
+    conn = sqlite3.connect('messages.db')
+    c = conn.cursor()
+    rows = c.execute('SELECT * FROM messages').fetchall()
+    conn.close()
+    return render_template('view_messages.html', messages=rows)
 
 @app.route('/')
 def redirect_to_home():
