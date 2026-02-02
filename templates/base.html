@@ -24,7 +24,12 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url_for('home') }}" tabindex="1">fn</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('view_messages') }}">Messages</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('home') }}" tabindex="1">fn</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('contact') }}" tabindex="0">Contact</a></li>                
                 <li><a href="#" tabindex="3">About</a></li>
                 <li><a href="#" tabindex="2">Projects</a></li>                

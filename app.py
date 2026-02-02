@@ -29,7 +29,7 @@ def allowed_file(filename):
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('base.html')
+    return render_template('homr.html')
 
 @app.route('/contact')
 def contact():
@@ -166,7 +166,6 @@ def login():
             ph.verify(admin[2], password)  # admin[3] is the password_hash column
             user = User(id=admin[0], username=admin[1])
             login_user(user)  # admin[1] is the username column
-            flash("Login successful!", "success")
             return redirect(url_for('view_messages'))
         except argon2.exceptions.VerifyMismatchError:
             flash("Invalid credentials", "error")
@@ -178,7 +177,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return 'Logged out'
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
