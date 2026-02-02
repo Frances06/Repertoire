@@ -18,7 +18,7 @@ cur.execute('''CREATE TRIGGER IF NOT EXISTS admin_limit
     END;
 ''')
 
-def create_admin(username, password):
+'''def create_admin(username, password):
     ph = argon2.PasswordHasher()
     password_hash = ph.hash(password)
     try:
@@ -27,7 +27,7 @@ def create_admin(username, password):
         conn.close()
         return True
     except sqlite3.IntegrityError:
-        return False
+        return False'''
     
 def get_db():
     conn = sqlite3.connect("admin.db")
