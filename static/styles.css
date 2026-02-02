@@ -54,7 +54,7 @@ a:focus-visible, #progress-container:focus-visible {
     outline-offset: 5px;
 }
 
-:root[data-theme="high -contrast"] .footer a:focus-visible, :root[data-theme="high-contrast"] .contrast:focus-visible {
+:root[data-theme="high-contrast"] .footer a:focus-visible, :root[data-theme="high-contrast"] .contrast:focus-visible {
     outline: 3px solid #fad04b;
     outline-offset: 3px;
 }
