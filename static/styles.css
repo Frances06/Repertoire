@@ -38,6 +38,7 @@ main {
     display: flex;
     justify-content: center;
     padding-bottom: 100px; /* to avoid overlap with fixed player */
+    align-items: center; /* keeps centering */
 }
 
 button:focus-visible,
@@ -53,9 +54,15 @@ a:focus-visible, #progress-container:focus-visible {
     outline-offset: 5px;
 }
 
-:root[data-theme="high-contrast"] .footer a:focus-visible, :root[data-theme="high-contrast"] .contrast:focus-visible {
+:root[data-theme="high -contrast"] .footer a:focus-visible, :root[data-theme="high-contrast"] .contrast:focus-visible {
     outline: 3px solid #fad04b;
     outline-offset: 3px;
+}
+
+:root[data-theme="high-contrast"] .error li {
+    color: #ff6161;
+    background: none;
+    border-color: #ff6161;
 }
 
 
@@ -423,20 +430,20 @@ nav > ul > li.active > a {
     color: var(--contact-type-color);
 }
 
-.contact-info div {
+.contact-info div, .form {
     border: 5px solid var(--contact-border);
     border-radius: 20px;
     padding: 15px 30px;
-    text-align: center;
+    text-align: left;
     min-width: 300px;
 
 }
 
-.contact-info form {
-    text-align: left;
+.contact-info h2, .form h2 {
+    text-align: center;
 }
 
-.contact-info input, .contact-info textarea {
+/*.contact-info*/ input, .contact-info textarea {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -451,7 +458,7 @@ nav > ul > li.active > a {
     max-height: 250px;
 }
 
-.contact-info input[type="submit"] {
+/*.contact-info*/ input[type="submit"] {
     background-color: var(--contact-info-button-bg);
     color: var(--contact-info-button-text);
     font-weight: bold;
@@ -462,7 +469,7 @@ nav > ul > li.active > a {
     margin-top: 15px;
 }
 
-.contact-info input[type="submit"]:hover {
+/*.contact-info*/ input[type="submit"]:hover {
     background-color: var(--contact-info-button-hover);
     box-shadow:0 8px 16px 0 rgba(0,0,0,0.6)
 }
@@ -483,11 +490,26 @@ nav > ul > li.active > a {
     border: 3px solid var(--contact-border);
     border-radius: 10px;
     padding: 10px 20px;
+    text-align: center;
 }
 
 .messages th {
     background-color: var(--table-color);
     color: var(--table-text);
+}
+
+.error {
+    text-align: center;
+}
+
+.error li {
+    border: 3px solid #ac2f2f;
+    background-color: #f0c6c6;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #ac2f2f;
+    font-weight: bold;
+    list-style-type: none;
 }
 
 @media screen and (max-width: 600px) {

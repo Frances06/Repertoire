@@ -1,12 +1,17 @@
 import os
 import sqlite3
-from flask import Flask, url_for, redirect, render_template, jsonify, request, send_from_directory
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from flask import Flask, url_for, redirect, render_template, jsonify, request, send_from_directory, flash
+from flask_login import LoginManager, login_user, login_required, logout_user
+from models.user import User
 import argon2
 from werkzeug.utils import secure_filename
+from flask import flash, redirect
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '{}'.format(os.urandom(24)) # Secret key for session management
+login_manager = LoginManager(app)
+login_manager.login_view = "login"
+login_manager.login_message = None
 
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"mp3", "wav", "ogg"}
@@ -14,9 +19,12 @@ ALLOWED_EXTENSIONS = {"mp3", "wav", "ogg"}
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get_by_id(user_id)
+
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 @app.route('/')
 @app.route('/home')
@@ -140,6 +148,9 @@ def delete_track():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+
     username = request.form.get('username')
     password = request.form.get('password')
 
@@ -152,13 +163,22 @@ def login():
     if admin:
         ph = argon2.PasswordHasher()
         try:
-            ph.verify(admin[3], password)  # admin[3] is the password_hash column
-            login_user(admin[1])  # admin[1] is the username column
-            return jsonify({"success": True})
+            ph.verify(admin[2], password)  # admin[3] is the password_hash column
+            user = User(id=admin[0], username=admin[1])
+            login_user(user)  # admin[1] is the username column
+            flash("Login successful!", "success")
+            return redirect(url_for('view_messages'))
         except argon2.exceptions.VerifyMismatchError:
-            return jsonify({"error": "Invalid credentials"}), 401
-
-    return jsonify({"error": "Invalid credentials"}), 401
+            flash("Invalid credentials", "error")
+            return redirect(url_for('login'))
+    else:
+        flash("Invalid credentials", "error")
+        return redirect(url_for('login'))
+            
+@app.route('/logout')
+def logout():
+    logout_user()
+    return 'Logged out'
 
 if __name__ == '__main__':
     app.run(debug=True)

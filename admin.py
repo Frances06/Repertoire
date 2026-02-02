@@ -1,8 +1,8 @@
 import sqlite3
 import argon2
 
-db = sqlite3.connect('admin.db')
-cur = db.cursor()
+conn = sqlite3.connect('admin.db')
+cur = conn.cursor()
 
 cur.execute('''CREATE TABLE IF NOT EXISTS admin (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,9 +23,15 @@ def create_admin(username, password):
     password_hash = ph.hash(password)
     try:
         cur.execute('INSERT INTO admin (username, password_hash) VALUES (?, ?)', (username, password_hash))
-        db.commit()
+        conn.commit()
+        conn.close()
         return True
     except sqlite3.IntegrityError:
         return False
     
-create_admin('admin', 'StrongPassword123!')
+def get_db():
+    conn = sqlite3.connect("admin.db")
+    conn.row_factory = sqlite3.Row
+    return conn
+    
+#create_admin('admin', 'StrongPassword123!')
