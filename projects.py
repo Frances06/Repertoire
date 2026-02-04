@@ -10,5 +10,5 @@ cur.execute('''CREATE TABLE IF NOT EXISTS projects (
     short_desc TEXT NOT NULL
 )''')
 
-
-# Note: Might need to edit my upload functions to reuse them to upload images for this)
+cur.execute('INSERT INTO projects (name, image_url, short_desc) VALUES (?, ?, ?)',
+            ("Project Nova", ""))
