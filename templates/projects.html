@@ -8,6 +8,16 @@
     <title>{% block title %}Projects{% endblock %}</title>
 <body>
     {% block content %}
+    {% for project in projects %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/projects/{{ message[1] }}') }}"/>
+            <div class="card-header">{{ message[0] }}</div>
+            <div class="card-body">{{ message[2] }}</div>
+            <div class="card-actions">
+                <button class="card-btn">Try</button>
+            </div>
+        </div>
+    {% endfor %}
     {% endblock %}
 </body>
 </html>

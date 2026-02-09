@@ -3,6 +3,7 @@ import sqlite3
 from flask import Flask, url_for, redirect, render_template, jsonify, request, send_from_directory, flash
 from flask_login import LoginManager, login_user, login_required, logout_user
 from models.user import User
+from projects import get_db
 import argon2
 from werkzeug.utils import secure_filename
 from flask import flash, redirect
@@ -74,7 +75,10 @@ def view_messages():
 
 @app.route('/projects')
 def projects():
-    return render_template('projects.html')
+    db = get_db
+    cards = db.execute('SELECT * FROM projects').fetchall()
+    conn.close()
+    return render_template('projects.html', projects=cards)
 
 
 
