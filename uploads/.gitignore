@@ -1,2 +1,4 @@
+# Ignore all songs uploaded
+# The songs will be saved locally, but they won't be szaved to the repository
 *
 !.gitignore
