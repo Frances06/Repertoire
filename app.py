@@ -6,7 +6,6 @@ from models.user import User
 from projects import get_db
 import argon2
 from werkzeug.utils import secure_filename
-from flask import flash, redirect
 
 # Initialize Flask app
 app = Flask(__name__)
