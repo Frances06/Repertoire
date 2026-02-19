@@ -104,8 +104,9 @@ def about():
 # Projects page route (fetches project data from the database and renders the template)
 @app.route('/projects')
 def projects():
-    db = get_db  # Fetch the database object
-    cards = db.execute('SELECT * FROM projects').fetchall()  # Fetch all projects from the DB
+    conn = get_db()  # Fetch the database object
+    curs = conn.cursor()
+    cards = curs.execute('SELECT * FROM projects').fetchall()  # Fetch all projects from the DB
     conn.close()  # Close the database connection
     return render_template('projects.html', projects=cards)
 

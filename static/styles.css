@@ -579,7 +579,8 @@ nav > ul > li.active > a {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   overflow: hidden; /* clips image to rounded corners */
-  max-width: 320px;
+  max-width: 207px;
+  height: 400px;
 
   display: flex;
   flex-direction: column;
