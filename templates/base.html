@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Poetsen+One&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <body>
     <header>
         <div class="welcome">
@@ -31,7 +32,7 @@
                     <li><a href="{{ url_for('home') }}" tabindex="1">fn</a></li>
                 {% endif %}
                 <li><a href="{{ url_for('contact') }}" tabindex="0">Contact</a></li>                
-                <li><a href="#" tabindex="3">About</a></li>
+                <li><a href="{{ url_for('about') }}" tabindex="3">About</a></li>
                 <li><a href="{{ url_for('projects') }}" tabindex="2">Projects</a></li>                
                 <li><a href="{{ url_for('home') }}" tabindex="1">Home</a></li>
             </ul>

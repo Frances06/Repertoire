@@ -9,80 +9,97 @@
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <body>
-    {% block content %}
-<style>
-.mySlides {display:none}
-.w3-left, .w3-right, .w3-badge {cursor:pointer}
-.w3-badge {height:13px;width:13px;padding:0}
-</style>
-<body>
-<div class="w3-content w3-display-container" style="max-width:800px;">
-  <img class="mySlides" src="{{ url_for('static', filename='images/projects.png')}}" style="width:100%;">
-  <img class="mySlides" src="{{ url_for('static', filename='images/about.png')}}" style="width:100%">
-  <img class="mySlides" src="{{ url_for('static', filename='images/contact.png')}}" style="width:100%">
-  <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+  {% block content %}
+
+  <div style="margin: 0; display: block;">
+  <div class="slideshow-container">
+    <img class="mySlides fade" src="{{ url_for('static', filename='images/projects.png')}}" style="width:100%">
+    <img class="mySlides fade" src="{{ url_for('static', filename='images/about.png')}}" style="width:100%">
+    <img class="mySlides fade" src="{{ url_for('static', filename='images/contact.png')}}" style="width:100%">
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  </div>
+  <br>
+
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span><br> 
+    <h1 class="wave" id="waveText">Welcome</h1>
+    <p style="margin: 0 30px 0 30px; font-size: 24px;">
+      A curated selection of projects showcasing my skills, and passion for programming.
+      <br>Explore my work and see how ideas are implemented.
+    </p>
   </div>
 </div>
 
 <script>
-var slideIndex = 1;
-var slideTimer;
+  let slideIndex = 1;
+  let slideTimer;
 
-showDivs(slideIndex);
-startCarousel();
-
-// Arrow buttons
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-  resetCarousel();
-}
-
-// Dot buttons
-function currentDiv(n) {
-  showDivs(slideIndex = n);
-  resetCarousel();
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-
-  if (n > x.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = x.length }
-
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" w3-white", "");
-  }
-
-  x[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " w3-white";
-}
-
-// Auto carousel
-function startCarousel() {
-  slideTimer = setInterval(function () {
-    slideIndex++;
-    showDivs(slideIndex);
-  }, 2000); // 2 seconds
-}
-
-// Reset timer after manual click
-function resetCarousel() {
-  clearInterval(slideTimer);
+  // Start slideshow on load
+  showSlides(slideIndex);
   startCarousel();
-}
-</script>
+
+  // Auto carousel
+  function startCarousel() {
+    slideTimer = setInterval(function () {
+      slideIndex++;
+      showSlides(slideIndex);
+    }, 3000); // 3 seconds (change if you want)
+  }
+
+  // Reset timer after manual interaction
+  function resetCarousel() {
+    clearInterval(slideTimer);
+    startCarousel();
+  }
+
+  function plusSlides(n) {
+    slideIndex += n;
+    showSlides(slideIndex);
+    resetCarousel();
+  }
+
+  function currentSlide(n) {
+    slideIndex = n;
+    showSlides(slideIndex);
+    resetCarousel();
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+
+    if (n > slides.length) { slideIndex = 1; }
+    if (n < 1) { slideIndex = slides.length; }
+
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+  }
+
+  const text = document.getElementById("waveText");
+  const letters = text.textContent.split("");
+  text.textContent = "";
+
+  letters.forEach((letter, index) => {
+    const span = document.createElement("span");
+    span.textContent = letter;
+    span.style.animationDelay = `${index * 0.2}s`;
+    text.appendChild(span);
+  });
+  </script>
 {% endblock %}
-    
 </body>
 </html>

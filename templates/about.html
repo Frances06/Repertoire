@@ -8,6 +8,17 @@
     <title>{% block title %}About{% endblock %}</title>
 </head>
 <body>
-    
+    {% block content %}
+    <div  style="display: block; margin: 0 80px;">
+        <h1>About Me</h1>
+        <p>
+            Hi, I&rsquo;m Frances!<br>I&rsquo;m a Computer Science undergraduate with a passion for building software and web applications.<br>
+            I&rsquo;m proficient in Python, Java, C#, SQL, HTML, CSS, and JavaScript; I also have experience with PHP.<br><br>
+            Prior to university, I completed a T-Level in Digital Design, Production & Development, where I gained hands-on experience in web design, project management, and understanding how technology adds value in business.<br><br>
+
+            I enjoy learning and exploring new technologies to grow my skill set. I&rsquo;m in the process of learning TypeScript (to build on my JavaScript knowledge), C++, Go, and Kotlin. My aim is to become an even more versatile developer — able to tackle problems creatively, efficiently, and with confidence..<br><br>
+        </p>
+    </div>
+    {% endblock %}
 </body>
 </html>

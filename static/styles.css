@@ -24,6 +24,7 @@
     --contact-info-button-hover: #153B16;
     --table-color: var(--contact-border);
     --table-text: var(--text-color);
+    --slideshow-button-color: rgba(0,0,0,0.8);
 }
 
 body {
@@ -64,7 +65,6 @@ a:focus-visible, #progress-container:focus-visible {
     background: none;
     border-color: #ff6161;
 }
-
 
 /*body.dark-mode {
     --bg-color: #121212;
@@ -108,6 +108,8 @@ body.high-contrast-mode {
     --contact-info-button-hover: #153B16;
     --table-color: var(--contact-border);
     --table-text: var(--page-bg);
+    --slideshow-button-color: rgba(0,0,0,0.8);
+
 }
 
 :root[data-theme="high-contrast"] {
@@ -136,6 +138,8 @@ body.high-contrast-mode {
     --contact-info-button-hover: #58b86d;
     --table-color: var(--contact-border);
     --table-text: var(--page-bg);
+    --slideshow-button-color: #000;
+
 }
 
 .contrast {
@@ -512,6 +516,100 @@ nav > ul > li.active > a {
     list-style-type: none;
 }
 
+.mySlides {display:none; vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+/* Next & previous buttons */
+.prev, .next {		
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: var(--slideshow-button-color);
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.wave span {
+    display: inline-block;
+    animation: wave 4s ease-in-out infinite;
+    color: var(--welcome-color);
+    font-size: 100px;
+    font-family: "Playwrite GB J", cursive;
+}
+
+@keyframes wave {
+    0%   { transform: translateY(0px); }
+    25%  { transform: translateY(-10px); }
+    50%  { transform: translateY(-20px); }
+    75%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
 @media screen and (max-width: 600px) {
     nav > ul {
         display: flex;
@@ -529,6 +627,10 @@ nav > ul > li.active > a {
 
     nav > ul > li:nth-child(2) {
         border-bottom: none;
+    }
+
+    .wave span {
+        font-size: 60px;
     }
   }
 
