@@ -33,18 +33,6 @@ window.onload = getCurrentYear;
             trackTitle.textContent = "Error loading playlist";
         });
 
-    // Build playlist UI
-    /*function buildPlaylist() {
-        playlistEl.innerHTML = "";
-
-        tracks.forEach((track, index) => {
-            const li = document.createElement("li");
-            li.textContent = track.title;
-            li.addEventListener("click", () => loadTrack(index, true));
-            playlistEl.appendChild(li);
-        });
-    }*/
-
     function buildPlaylist() {
     playlistEl.innerHTML = "";
 
@@ -185,12 +173,6 @@ uploadInput.addEventListener("change", () => {
         body: formData
     })
     .then(res => res.json())
-    /*.then(data => {
-    if (data.error) {
-        alert(data.error);
-        return;
-    }
-    refreshPlaylist();})*/
     .then(() => {
         return fetch("/api/playlist");
     })

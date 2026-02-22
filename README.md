@@ -7,7 +7,6 @@ This project is built with Flask and showcases my work — with additional featu
 * [Features](#features)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Project Structure](#project-structure)
 * [Technologies](#technologies)
 * [Asset Log](#asset-log)
 
@@ -68,34 +67,6 @@ Additionally, the website includes an audio player, allowing users to upload aud
 
 4. To try the admin-view, you can use the admin credentials in the file 'admin.txt'.
 
-<br>
-
----
-
-## Project Structure
-An overview of the project's structure:
-
-```
-Reportoire/
-│
-├── app.py                 # Main application file
-├── templates/             # HTML templates
-│   ├── base.html          # Base template for shared layout
-│   ├── index.html         # Homepage
-│   ├── about.html         # About page
-│   ├── projects.html      # Projects page
-│   ├── contact.html       # Contact form
-│   ├── admin_messages.html # Admin messages view
-│   └── audio_player.html  # Audio player page (if needed)
-├── static/                # Static files (CSS, JavaScript, images)
-│   ├── css/
-│   ├── js/
-│   └── audio/             # Uploaded audio files
-├── models.py              # Database models (e.g., messages)
-├── forms.py               # WTForms for forms (e.g., contact form)
-├── requirements.txt       # Python dependencies
-└── README.md              # This file
-```
 <br>
 
 ---

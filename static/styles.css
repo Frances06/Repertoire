@@ -25,6 +25,9 @@
     --table-color: var(--contact-border);
     --table-text: var(--text-color);
     --slideshow-button-color: rgba(0,0,0,0.8);
+    --download-button-text: #fff;
+    --card-section-bg: none;
+    --card-border: 0.5px solid #ddd;
 }
 
 body {
@@ -66,22 +69,6 @@ a:focus-visible, #progress-container:focus-visible {
     border-color: #ff6161;
 }
 
-/*body.dark-mode {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --accent-color: #1f1f1f;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-body.high-contrast-mode {
-    --bg-color: #0f0f0f;
-    --text-color: #ececec;
-    --accent-color: #1f1f1f;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}    
-*/
-
 :root[data-theme="dark"] {
     --page-bg: #0f0f0f;
     --text-color: #ececec;
@@ -109,7 +96,9 @@ body.high-contrast-mode {
     --table-color: var(--contact-border);
     --table-text: var(--page-bg);
     --slideshow-button-color: rgba(0,0,0,0.8);
-
+    --download-button-text: #fff;
+    --card-section-bg: #1f1f1f;
+    --card-border: 1px solid #aaa;
 }
 
 :root[data-theme="high-contrast"] {
@@ -139,8 +128,9 @@ body.high-contrast-mode {
     --table-color: var(--contact-border);
     --table-text: var(--page-bg);
     --slideshow-button-color: #000;
-
-}
+    --download-button-text: none;
+    --card-section-bg:none;
+    --card-border: 2px solid #858585;}
 
 .contrast {
     content: url("/static/images/contrast.svg") ;
@@ -178,9 +168,6 @@ nav > ul > li:first-child {
     float: left;
     font-family: "Birthstone", cursive;
     border-left: none;
-    /*font-size: 42px;
-    font-weight: bold;
-    text-shadow: 5px 5px rgba(0, 0, 0, 0.3);*/
 }
 
 nav > ul > li > a {
@@ -242,12 +229,8 @@ nav > ul > li.active > a {
 }
 
 .player {
-    /*background: #CFF09E;
-    color : #2E7D32;*/
     background: var(--player-color);
     color: var(--player-text);
-
-
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -290,7 +273,7 @@ nav > ul > li.active > a {
     display: none;        /* hidden by default */
     margin-right: 30px;
     margin-left: auto;
-    max-height: 6.5em;      /* ~3 <li> items, tweak as needed */
+    max-height: 6.5em;      
     overflow-y: auto;       /* enables scrolling */
 }
 
@@ -320,16 +303,10 @@ nav > ul > li.active > a {
 }
 
 .file-btn {
-  /*background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;*/
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 #progress-container {
@@ -355,7 +332,6 @@ nav > ul > li.active > a {
     background: none;
     border: none;
     color: var(--player-text);
-    /*margin-left: 100px;*/
     cursor: pointer;
 }
 
@@ -398,12 +374,10 @@ nav > ul > li.active > a {
 
 .contrast-dropdown button {
     display: inline;
-    /*display: block;
-    width: 100%;*/
     padding: 8px 16px;
     background: none;
     border: none;
-    border-left: 1px solid var(--text-color); /*#507C5C;*/
+    border-left: 1px solid var(--text-color);
     cursor: pointer;
     color: var(--text-color);
     font-weight: bold;
@@ -462,7 +436,7 @@ nav > ul > li.active > a {
     max-height: 250px;
 }
 
-/*.contact-info*/ input[type="submit"] {
+.card-actions button,  input[type="submit"] {
     background-color: var(--contact-info-button-bg);
     color: var(--contact-info-button-text);
     font-weight: bold;
@@ -473,7 +447,7 @@ nav > ul > li.active > a {
     margin-top: 15px;
 }
 
-/*.contact-info*/ input[type="submit"]:hover {
+.card-actions button, input[type="submit"]:hover {
     background-color: var(--contact-info-button-hover);
     box-shadow:0 8px 16px 0 rgba(0,0,0,0.6)
 }
@@ -674,8 +648,8 @@ nav > ul > li.active > a {
 }
 
 .card {
-  background-color: var(--card-bg);
-  color: var(--card-text);
+  background-color: var(--card-section-bg);
+  border: var(--card-border);
 
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -700,8 +674,6 @@ nav > ul > li.active > a {
 .card-header {
   padding: 0.75rem 1rem;
   font-weight: 600;
-  background-color: var(--card-section-bg);
-  border-bottom: 1px solid var(--card-border);
 }
 
 .card-body {
@@ -713,9 +685,14 @@ nav > ul > li.active > a {
 .card-actions {
   padding: 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 0.5rem;
   border-top: 1px solid var(--card-border);
+}
+
+.card-actions a {
+    text-decoration: none;
+    color: white;
 }
 
 .projects {
