@@ -616,3 +616,6 @@ nav > ul > li.active > a {
   border-top: 1px solid var(--card-border);
 }
 
+.projects {
+    text-align: center;
+}
