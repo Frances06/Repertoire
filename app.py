@@ -1,5 +1,5 @@
 import os
-import sqlite3
+import json
 
 from flask import Flask, jsonify, render_template, send_from_directory
 
@@ -29,11 +29,8 @@ def about():
 
 @app.route("/projects")
 def projects():
-    conn = sqlite3.connect("projects.db")
-    try:
-        cards = conn.execute("SELECT * FROM projects").fetchall()
-    finally:
-        conn.close()
+    with open(os.path.join(app.root_path, "projects.json"), encoding="utf-8") as project_file:
+        cards = json.load(project_file)
     return render_template("projects.html", projects=cards)
 
 
