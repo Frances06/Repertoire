@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -35,6 +35,11 @@ def projects():
     finally:
         conn.close()
     return render_template("projects.html", projects=cards)
+
+
+@app.route("/project-files/<path:filename>")
+def download_project(filename):
+    return send_from_directory(os.path.join(app.root_path, "projects"), filename, as_attachment=True)
 
 
 @app.route("/api/playlist")
