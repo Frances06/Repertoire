@@ -9,7 +9,7 @@ A personal portfolio built with Flask, HTML, CSS, JavaScript and SQLite. It brin
 - Responsive layout and keyboard-friendly controls
 - Compact, expandable music player with a dismissible first-visit hint
 - Curated audio playlist served from `static/audio/`
-- Project catalogue stored in `projects.db`
+- Project catalogue stored in `projects.json`
 
 ## Run locally
 
