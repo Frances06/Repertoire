@@ -819,3 +819,17 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
 .project-link { align-self: flex-start; color: var(--welcome-color); font-weight: 800; text-decoration: none; }
 .project-link:hover { text-decoration: underline; }
 .empty-projects { opacity: .75; }
+
+.home-hero { max-width: 850px; margin: 24px auto 70px; text-align: center; }
+.home-hero h1 { margin: 12px 0 20px; color: var(--welcome-color); font: clamp(2.4rem, 7vw, 4.6rem)/1.13 "Poetsen One", sans-serif; }
+.home-lede { max-width: 720px; margin: 0 auto; font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.8; }
+.hero-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.primary-link, .secondary-link { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 800; }
+.primary-link { background: var(--welcome-color); color: #fff; }
+.secondary-link { border: 1px solid var(--contact-border); color: var(--text-color); }
+.primary-link:hover, .secondary-link:hover { transform: translateY(-2px); }
+.home-highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; max-width: 920px; margin: 0 auto; }
+.home-highlights article { padding: 24px; border: 1px solid var(--contact-border); border-radius: 18px; background: var(--player-color); color: var(--player-text); }
+.highlight-icon { display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--welcome-color); color: #fff; }
+.home-highlights h2 { margin: 14px 0 6px; font: 1.35rem "Poetsen One", sans-serif; }
+.home-highlights p { margin: 0; line-height: 1.6; }
