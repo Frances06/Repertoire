@@ -1,105 +1,33 @@
 {% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <title>{% block title %}Home{% endblock %}</title>
-</head>
-<body>
-  {% block content %}
+{% block title %}Home{% endblock %}
 
-  <div style="margin: 0; display: block;">
-  <div class="slideshow-container">
-    <img class="mySlides fade" src="{{ url_for('static', filename='images/projects.png')}}" style="width:100%">
-    <img class="mySlides fade" src="{{ url_for('static', filename='images/about.png')}}" style="width:100%">
-    <img class="mySlides fade" src="{{ url_for('static', filename='images/contact.png')}}" style="width:100%">
-
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
+{% block content %}
+<section class="home-hero">
+  <p class="eyebrow">Welcome to my portfolio</p>
+  <h1>Curiosity, creativity<br>and a little bit of code.</h1>
+  <p class="home-lede">I'm a Computer Science undergraduate who enjoys building software, experimenting with ideas and learning how things work. This is where I collect some of the things I've made along the way.</p>
+  <div class="hero-actions">
+    <a class="primary-link" href="{{ url_for('projects') }}">Explore my projects <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    <a class="secondary-link" href="{{ url_for('about') }}">A little about me</a>
   </div>
-  <br>
+</section>
 
-  <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span> 
-    <span class="dot" onclick="currentSlide(2)"></span> 
-    <span class="dot" onclick="currentSlide(3)"></span><br> 
-    <h1 class="wave" id="waveText">Welcome</h1>
-    <p style="margin: 0 30px 0 30px; font-size: 24px;">
-      A curated selection of projects showcasing my skills, and passion for programming.
-      <br>Explore my work and see how ideas are implemented.
-    </p>
-  </div>
-</div>
-
-<script>
-  let slideIndex = 1;
-  let slideTimer;
-
-  // Start slideshow on load
-  showSlides(slideIndex);
-  startCarousel();
-
-  // Auto carousel
-  function startCarousel() {
-    slideTimer = setInterval(function () {
-      slideIndex++;
-      showSlides(slideIndex);
-    }, 3000); // 3 seconds (change if you want)
-  }
-
-  // Reset timer after manual interaction
-  function resetCarousel() {
-    clearInterval(slideTimer);
-    startCarousel();
-  }
-
-  function plusSlides(n) {
-    slideIndex += n;
-    showSlides(slideIndex);
-    resetCarousel();
-  }
-
-  function currentSlide(n) {
-    slideIndex = n;
-    showSlides(slideIndex);
-    resetCarousel();
-  }
-
-  function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-
-    if (n > slides.length) { slideIndex = 1; }
-    if (n < 1) { slideIndex = slides.length; }
-
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-  }
-
-  const text = document.getElementById("waveText");
-  const letters = text.textContent.split("");
-  text.textContent = "";
-
-  letters.forEach((letter, index) => {
-    const span = document.createElement("span");
-    span.textContent = letter;
-    span.style.animationDelay = `${index * 0.2}s`;
-    text.appendChild(span);
-  });
-  </script>
+<section class="home-highlights" aria-label="Portfolio highlights">
+  <article>
+    <span class="highlight-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
+    <h2>Build</h2>
+    <p>Small tools and practical projects, made to solve problems or explore an idea.</p>
+  </article>
+  <article>
+    <span class="highlight-icon"><i class="fa-solid fa-gamepad" aria-hidden="true"></i></span>
+    <h2>Play</h2>
+    <p>Games and interactive experiments where logic meets a little creativity.</p>
+  </article>
+  <article>
+    <span class="highlight-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span>
+    <h2>Explore</h2>
+    <p>A growing space for trying new technologies and seeing what I can make with them.</p>
+  </article>
+</section>
 {% endblock %}
-</body>
-</html>
