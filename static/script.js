@@ -8,6 +8,8 @@
   const expand = $("[data-expand-player]");
   const hint = $("[data-player-hint]");
   const playButtons = [$("[data-play]"), $("[data-play-large]")].filter(Boolean);
+  const uploadInput = $("#audio-upload");
+  const uploadStatus = $("[data-upload-status]");
   let tracks = [];
   let current = 0;
   let repeat = false;
@@ -41,6 +43,13 @@
     if (themeMenu && !event.target.closest(".theme-picker")) {
       themeMenu.hidden = true;
       themeToggle?.setAttribute("aria-expanded", "false");
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && themeMenu && !themeMenu.hidden) {
+      themeMenu.hidden = true;
+      themeToggle?.setAttribute("aria-expanded", "false");
+      themeToggle?.focus();
     }
   });
 
@@ -142,20 +151,43 @@
     }
   });
 
-  fetch("/api/playlist")
-    .then((response) => { if (!response.ok) throw new Error("Playlist unavailable"); return response.json(); })
-    .then((data) => {
-      tracks = Array.isArray(data) ? data : [];
-      const hasTracks = tracks.length > 0;
-      playButtons.forEach((button) => { button.disabled = !hasTracks; });
-      $("[data-prev]")?.toggleAttribute("disabled", !hasTracks);
-      $("[data-next]")?.toggleAttribute("disabled", !hasTracks);
-      if (!hasTracks) {
-        title.textContent = "A playlist is coming soon";
-        renderPlaylist();
-        return;
-      }
-      loadTrack(0);
-    })
-    .catch(() => { title.textContent = "Music is taking a little break"; });
+  const refreshPlaylist = async (playLast = false) => {
+    const response = await fetch("/api/playlist");
+    if (!response.ok) throw new Error("Playlist unavailable");
+    const data = await response.json();
+    tracks = Array.isArray(data) ? data : [];
+    const hasTracks = tracks.length > 0;
+    playButtons.forEach((button) => { button.disabled = !hasTracks; });
+    $("[data-prev]")?.toggleAttribute("disabled", !hasTracks);
+    $("[data-next]")?.toggleAttribute("disabled", !hasTracks);
+    if (!hasTracks) {
+      current = 0;
+      audio.removeAttribute("src");
+      title.textContent = "A playlist is coming soon";
+      renderPlaylist();
+      return;
+    }
+    loadTrack(playLast ? tracks.length - 1 : Math.min(current, tracks.length - 1), playLast);
+  };
+
+  uploadInput?.addEventListener("change", async () => {
+    const file = uploadInput.files?.[0];
+    if (!file) return;
+    if (uploadStatus) uploadStatus.textContent = "Uploading…";
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const response = await fetch("/upload", { method: "POST", body: formData });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Upload failed.");
+      await refreshPlaylist(true);
+      if (uploadStatus) uploadStatus.textContent = "Added “" + result.title + "” to the playlist.";
+    } catch (error) {
+      if (uploadStatus) uploadStatus.textContent = error.message || "Upload failed. Please try again.";
+    } finally {
+      uploadInput.value = "";
+    }
+  });
+
+  refreshPlaylist().catch(() => { title.textContent = "Music is taking a little break"; });
 })();
