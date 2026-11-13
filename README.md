@@ -1,6 +1,6 @@
 # Repertoire
 
-A personal portfolio built with Flask, HTML, CSS, JavaScript and SQLite. It brings together selected projects, a little information about me, and a small curated music player.
+A personal portfolio built with Flask, HTML, CSS and JavaScript. It brings together selected projects, a little information about me, and a small music player.
 
 ## Features
 
@@ -8,8 +8,9 @@ A personal portfolio built with Flask, HTML, CSS, JavaScript and SQLite. It brin
 - Light, dark and high-contrast colour themes
 - Responsive layout and keyboard-friendly controls
 - Compact, expandable music player with a dismissible first-visit hint
-- Curated audio playlist served from `static/audio/`
-- Project catalogue stored in `projects.json`
+- Audio uploads (MP3, WAV and OGG), with a maximum of 15 uploaded tracks
+- Curated audio can also be placed in `static/audio/`
+- Project catalogue loaded from `projects.json`
 
 ## Run locally
 
@@ -31,15 +32,14 @@ A personal portfolio built with Flask, HTML, CSS, JavaScript and SQLite. It brin
 
 ## Adding music
 
-Place audio files in `static/audio/`. Supported formats are MP3, WAV and OGG. The player lists these files automatically. Visitors can play tracks but cannot upload or delete files.
+Open the expanded player and use the upload icon to choose an MP3, WAV or OGG file from your computer. Uploaded tracks are saved in the local `uploads/` folder, which is excluded from Git so personal audio files are not committed to the public repository. The upload limit is 15 tracks. To include curated tracks with the site itself, place them in `static/audio/`.
 
 ## Project data
 
-The Projects page reads from the existing `projects.db` SQLite database. This is separate from the retired assignment-only admin and contact-message databases.
+The Projects page currently reads its catalogue from `projects.json`.
 
 ## Technologies
 
 - Python and Flask
 - HTML, CSS and JavaScript
-- SQLite
 - Jinja templates
