@@ -91,12 +91,24 @@
     playlist.replaceChildren();
     tracks.forEach((track, index) => {
       const item = document.createElement("li");
+      item.className = "player-playlist-item";
       const button = document.createElement("button");
       button.type = "button";
+      button.className = "playlist-track";
       button.textContent = track.title;
       button.setAttribute("aria-current", index === current ? "true" : "false");
       button.addEventListener("click", () => loadTrack(index, true));
       item.append(button);
+
+      if (track.uploaded && track.filename) {
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "playlist-remove";
+        removeButton.textContent = "Remove";
+        removeButton.setAttribute("aria-label", "Remove " + track.title);
+        removeButton.addEventListener("click", () => removeUploadedTrack(index));
+        item.append(removeButton);
+      }
       playlist.append(item);
     });
   };
@@ -108,6 +120,29 @@
     renderPlaylist();
     if (autoplay) audio.play().then(() => setPlayIcon(true)).catch(() => setPlayIcon(false));
   };
+  const removeUploadedTrack = async (index) => {
+    const track = tracks[index];
+    if (!track?.uploaded || !track.filename) return;
+    const wasCurrent = index === current;
+    if (wasCurrent) {
+      audio.pause();
+      audio.removeAttribute("src");
+      setPlayIcon(false);
+    }
+    if (uploadStatus) uploadStatus.textContent = "Removing “" + track.title + "”…";
+    try {
+      const response = await fetch("/uploads/" + encodeURIComponent(track.filename), { method: "DELETE" });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Could not remove that track.");
+      if (!wasCurrent && index < current) current -= 1;
+      await refreshPlaylist(false);
+      if (uploadStatus) uploadStatus.textContent = "Removed “" + track.title + "” from the playlist.";
+    } catch (error) {
+      if (uploadStatus) uploadStatus.textContent = error.message || "Could not remove that track.";
+      await refreshPlaylist(false).catch(() => {});
+    }
+  };
+
   const play = () => {
     if (!tracks.length) return;
     if (audio.paused) audio.play().then(() => setPlayIcon(true)).catch(() => setPlayIcon(false));
