@@ -927,9 +927,8 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
 
 /* High-contrast refinements requested after keyboard review. */
 :root[data-theme="high-contrast"] .music-player .player-actions .upload-button:focus-visible {
-  outline: 3px solid #fff;
-  outline-offset: 4px;
-  box-shadow: 0 0 0 1px #000;
+  outline: 3px solid #000;
+  outline-offset: 3px;
 }
 :root[data-theme="high-contrast"] .contact-link,
 :root[data-theme="high-contrast"] .contact-link * {
@@ -946,15 +945,26 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
   text-align: left;
 }
 .player-playlist-item .playlist-remove {
-  flex: 0 0 auto;
-  width: auto;
-  padding: 6px 10px;
-  border: 1px solid currentColor;
-  border-radius: 8px;
+  display: inline-grid;
+  flex: 0 0 34px;
+  place-items: center;
+  width: 34px;
+  min-height: 34px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--player-text) 28%, transparent);
+  border-radius: 50%;
   background: transparent;
   color: inherit;
-  font-size: .8rem;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
 }
 .player-playlist-item .playlist-remove:hover {
-  background: color-mix(in srgb, var(--player-text) 12%, transparent);
+  background: #a83242;
+  border-color: #a83242;
+  color: #fff;
+  transform: scale(1.06);
+}
+.player-playlist-item .playlist-remove:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
 }
