@@ -112,5 +112,19 @@ def uploaded_audio(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 
+@app.route("/uploads/<path:filename>", methods=["DELETE"])
+def delete_uploaded_audio(filename):
+    safe_filename = secure_filename(filename)
+    if not safe_filename or safe_filename != filename or "/" in filename or "\\" in filename:
+        return jsonify({"error": "Invalid track filename."}), 400
+
+    track_path = os.path.join(UPLOAD_FOLDER, safe_filename)
+    if not os.path.isfile(track_path):
+        return jsonify({"error": "That uploaded track could not be found."}), 404
+
+    os.remove(track_path)
+    return jsonify({"message": "Uploaded track removed."}), 200
+
+
 if __name__ == "__main__":
     app.run()
