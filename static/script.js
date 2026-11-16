@@ -9,6 +9,7 @@
   const hint = $("[data-player-hint]");
   const playButtons = [$("[data-play]"), $("[data-play-large]")].filter(Boolean);
   const uploadInput = $("#audio-upload");
+  const uploadTrigger = $("[data-upload-trigger]");
   const uploadStatus = $("[data-upload-status]");
   let tracks = [];
   let current = 0;
@@ -54,6 +55,8 @@
   });
 
   if (!player || !audio || !playlist) return;
+
+  uploadTrigger?.addEventListener("click", () => uploadInput?.click());
 
   const setExpanded = (expanded) => {
     details.hidden = !expanded;
