@@ -870,3 +870,50 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
   white-space: nowrap;
   border: 0;
 }
+
+
+/* Theme-specific keyboard focus and contrast refinements. */
+:root[data-theme="dark"] :focus-visible {
+  outline-color: #e7a9bf;
+}
+:root[data-theme="dark"] .music-player :focus-visible {
+  outline-color: #d47728;
+}
+:root[data-theme="dark"] .contrast-dropdown button:hover {
+  color: #30232a;
+  background: #e7a9bf;
+}
+:root[data-theme="high-contrast"] .primary-link,
+:root[data-theme="high-contrast"] .highlight-icon,
+:root[data-theme="high-contrast"] .contact-link > i:first-child {
+  color: #000;
+}
+:root[data-theme="high-contrast"] .player-progress:focus-visible {
+  outline-color: #000;
+}
+:root[data-theme="high-contrast"] .theme-toggle:focus-visible,
+:root[data-theme="high-contrast"] .contrast-dropdown button:focus-visible {
+  outline-color: #fff;
+}
+:root[data-theme="high-contrast"] .contrast-dropdown button:hover {
+  color: #000;
+  background: #ffcf4a;
+}
+.upload-button {
+  border: 0;
+  font: inherit;
+}
+.upload-button:focus-visible {
+  outline: 3px solid #d47728;
+  outline-offset: 3px;
+}
+:root[data-theme="high-contrast"] .upload-button:focus-visible {
+  outline-color: #fff;
+}
+.primary-link i {
+  transition: transform .2s ease;
+}
+.primary-link:hover i,
+.primary-link:focus-visible i {
+  transform: translateX(5px);
+}
