@@ -917,3 +917,9 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
 .primary-link:focus-visible i {
   transform: translateX(5px);
 }
+
+/* Override the older, more specific high-contrast focus rules for theme controls. */
+:root[data-theme="high-contrast"] button.theme-toggle:focus-visible,
+:root[data-theme="high-contrast"] .theme-picker .contrast-dropdown button:focus-visible {
+  outline-color: #fff;
+}
