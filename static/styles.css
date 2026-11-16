@@ -923,3 +923,38 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
 :root[data-theme="high-contrast"] .theme-picker .contrast-dropdown button:focus-visible {
   outline-color: #fff;
 }
+
+
+/* High-contrast refinements requested after keyboard review. */
+:root[data-theme="high-contrast"] .music-player .player-actions .upload-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 1px #000;
+}
+:root[data-theme="high-contrast"] .contact-link,
+:root[data-theme="high-contrast"] .contact-link * {
+  color: #000;
+}
+.player-playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.player-playlist-item .playlist-track {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+.player-playlist-item .playlist-remove {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-size: .8rem;
+}
+.player-playlist-item .playlist-remove:hover {
+  background: color-mix(in srgb, var(--player-text) 12%, transparent);
+}
