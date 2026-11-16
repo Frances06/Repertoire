@@ -104,8 +104,12 @@
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.className = "playlist-remove";
-        removeButton.textContent = "Remove";
+        const removeIcon = document.createElement("i");
+        removeIcon.className = "fa-solid fa-trash-can";
+        removeIcon.setAttribute("aria-hidden", "true");
+        removeButton.append(removeIcon);
         removeButton.setAttribute("aria-label", "Remove " + track.title);
+        removeButton.title = "Remove " + track.title;
         removeButton.addEventListener("click", () => removeUploadedTrack(index));
         item.append(removeButton);
       }
