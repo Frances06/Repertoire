@@ -1,55 +1,39 @@
 {% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Projects{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<body>
-    {% block content %}
-    <div style="display: block" class="projects">
-        <div class="container text-center">
-            <div class="row row-cols-4">
-                <h2>Games</h2>
-                {% for project in projects %}
-                {% if project[2] == "game" %}
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='images/projects/' ~ project[4]) }}" height="132px"/>
-                        <div class="card-header">{{ project[1] }}</div>
-                        <div class="card-body">{{ project[3] }}</div>
-                        <div class="card-actions">
-                            <button class="card-btn"><a href="{{ url_for('projects', filename='' ~ project[5]) }}" download="{{ project[5] }}">Try <i class="fa-solid fa-download"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-            </div>
-        </div>
+{% block title %}Projects{% endblock %}
 
-        <div class="container text-center">
-            <div class="row row-cols-4">
-                <h2>Tools</h2>
-                {% for project in projects %}
-                {% if project[2] == "tool" %}
-                <div class="col">
-                    <div class="card"> 
-                        <img src="{{ url_for('static', filename='images/projects/' ~ project[4]) }}" height="132px"/>
-                        <div class="card-header">{{ project[1] }}</div>
-                        <div class="card-body">{{ project[3] }}</div>
-                        <div class="card-actions">
-                            <button class="card-btn"><a href="{{ url_for('projects', filename='' ~ project[5]) }}" download="{{ project[5] }}">Try <i class="fa-solid fa-download"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
+{% block content %}
+<section class="projects-page">
+  <p class="eyebrow">A selection of things I've made</p>
+  <h1>Projects</h1>
+  <p class="projects-intro">A growing collection of experiments, games and tools. More will find their way here as I build them.</p>
+
+  {% for category, label, description in [
+    ("game", "Games", "Little worlds, puzzles and interactive experiments."),
+    ("tool", "Tools", "Practical projects and things built to make life easier.")
+  ] %}
+    <section class="project-section">
+      <div class="section-heading">
+        <h2>{{ label }}</h2>
+        <p>{{ description }}</p>
+      </div>
+      <div class="project-grid">
+        {% for project in projects if project[2] == category %}
+          <article class="project-card">
+            <img src="{{ url_for('static', filename='images/projects/' ~ project[4]) }}" alt="" loading="lazy">
+            <div class="project-card-content">
+              <h3>{{ project[1] }}</h3>
+              <p>{{ project[3] }}</p>
+              {% if project[5] %}
+                <a class="project-link" href="{{ url_for('download_project', filename=project[5]) }}">View project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              {% endif %}
             </div>
-        </div>
-    </div>
-    {% endblock %}
-</body>
-</html>
+          </article>
+        {% else %}
+          <p class="empty-projects">New projects coming soon.</p>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</section>
+{% endblock %}

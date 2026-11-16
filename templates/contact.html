@@ -1,34 +1,28 @@
 {% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Contact{% endblock %}</title>
-</head>
-<body>
-    {% block content %}
-    <div class="contact-info">
-        <div style="height: 180px">
-            <h2>Contact Information</h2>
-            <p>Email: <a href="mailto: 2713017@dundee.ac.uk">2713017@dundee.ac.uk</a></p>
-            <p>Phone: <a href="tel:+447826623341">+44 7826 623341</a></p>
-        </div>
-        <div>
-            <h2>Send a Message</h2>
-            <form id="contact-form" data-url="{{ url_for('add_message') }}"> <!-- action="{{ url_for('add_message') }}"  method="post" -->
-                <label for="name">Name</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-                <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" required><br><br>
-                <label for="message">Message</label><br>
-                <textarea id="message" name="message" rows="4" minlength="2" maxlength="2500" required></textarea><br><br>
-                <p class="char-counter"><span id="char-count">0</span>/2500</p>
-                <input type="submit" value="Send">
-            </form>
-        </div>
-    </div>
-    {% endblock %}
-</body>
-</html>
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="contact-page">
+  <p class="eyebrow">Say hello</p>
+  <h1>Let's connect.</h1>
+  <p class="contact-intro">Have a question about a project, want to collaborate, or just fancy a chat about code? You can find me here:</p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:uchenna.frances.nwabisi@gmail.com">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <span><strong>Email</strong><small>uchenna.frances.nwabisi@gmail.com</small></span>
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+    <a class="contact-link" href="https://github.com/Frances06" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      <span><strong>GitHub</strong><small>Explore my projects and code</small></span>
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+    <a class="contact-link" href="https://www.linkedin.com/in/frances-nwabisi-b27409426/" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+      <span><strong>LinkedIn</strong><small>Connect with me professionally</small></span>
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+{% endblock %}

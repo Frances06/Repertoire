@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local databases and instance configuration
+*.db
+instance/
+
+# Local uploads are not part of the public portfolio
+uploads/

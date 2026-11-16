@@ -1,0 +1,4 @@
+[
+  [1, "Bulls & Cows", "game", "A number-guessing game where the player uses clues to work out the hidden number.", "Bulls & Cows.png", "Bulls & Cows.zip"],
+  [2, "To-Do List Manager", "tool", "A command-line to-do list manager built as a shell scripting project.", "To-Do.png", "todo.sh"]
+]
