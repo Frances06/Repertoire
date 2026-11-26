@@ -2,9 +2,9 @@
 
 # Repertoire
 
-### A personal portfolio of projects, ideas and a little music.
+### Projects, ideas and a little music.
 
-A Flask-powered portfolio bringing together selected software projects, a little about me, and a built-in music player.
+A Flask-powered portfolio bringing together selected software projects, a little information about me, and a built-in music player.
 
 [![Python](https://img.shields.io/badge/Python-Flask-1f425f?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-web%20app-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
@@ -16,7 +16,7 @@ A Flask-powered portfolio bringing together selected software projects, a little
 
 ## Overview
 
-Repertoire is a personal portfolio built with **Python, Flask, HTML, CSS and JavaScript**. It is designed to be simple to explore, responsive across screen sizes, and comfortable to use with a keyboard.
+This is a personal portfolio built with **Python, Flask, HTML, CSS and JavaScript**. It is designed to be simple to explore, responsive across screen sizes, and comfortable to use with a keyboard.
 
 ## Highlights
 
