@@ -26,7 +26,7 @@
     "Blackjack AI Simulator",
     "ai",
     "A collaborative Python simulator that compares five Blackjack agents, including rule-based, search, supervised-learning and reinforcement-learning approaches.",
-    "Blackjack.png",
+    null,
     null,
     "Python, scikit-learn, matplotlib, machine learning and search algorithms",
     "Contributed to the development and testing of the simulator and its AI-based strategies.",
