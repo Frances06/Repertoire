@@ -21,7 +21,9 @@
       <div class="project-grid">
         {% for project in projects if project[2] == category %}
           <article class="project-card">
-            <img src="{{ url_for('static', filename='images/projects/' ~ project[4]) }}" alt="" loading="lazy">
+            {% if project[4] %}
+              <img src="{{ url_for('static', filename='images/projects/' ~ project[4]) }}" alt="" loading="lazy">
+            {% endif %}
             <div class="project-card-content">
               <h3>{{ project[1] }}</h3>
               <p>{{ project[3] }}</p>
