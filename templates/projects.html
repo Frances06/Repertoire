@@ -10,7 +10,8 @@
 
   {% for category, label, description in [
     ("game", "Games", "Little worlds, puzzles and interactive experiments."),
-    ("tool", "Tools", "Practical projects and things built to make life easier.")
+    ("tool", "Tools", "Practical projects and things built to make life easier."),
+    ("ai", "AI & Simulation", "Exploring algorithms and different approaches to decision-making.")
   ] %}
     <section class="project-section">
       <div class="section-heading">
@@ -24,9 +25,23 @@
             <div class="project-card-content">
               <h3>{{ project[1] }}</h3>
               <p>{{ project[3] }}</p>
-              {% if project[5] %}
-                <a class="project-link" href="{{ url_for('download_project', filename=project[5]) }}">View project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              {% if project[6] %}
+                <p><strong>Technologies & concepts:</strong> {{ project[6] }}</p>
               {% endif %}
+              {% if project[7] %}
+                <p><strong>Contribution:</strong> {{ project[7] }}</p>
+              {% endif %}
+              {% if project[8] %}
+                <p><strong>Skills developed:</strong> {{ project[8] }}</p>
+              {% endif %}
+              <div class="project-links">
+                {% if project[5] %}
+                  <a class="project-link" href="{{ url_for('download_project', filename=project[5]) }}">View project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                {% endif %}
+                {% if project[9] %}
+                  <a class="project-link" href="{{ project[9] }}" target="_blank" rel="noopener noreferrer">View source <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                {% endif %}
+              </div>
             </div>
           </article>
         {% else %}

@@ -1,27 +1,23 @@
 {% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}About{% endblock %}</title>
-</head>
-<body>
-    {% block content %}
-    <section class="about-page">
-        <p class="eyebrow">Get to know Frances</p>
-        <h1>About Me</h1>
-        <p class="about-intro">
-            Hi, I&rsquo;m Frances! I&rsquo;m a Computer Science undergraduate at the University of Dundee with an interest in building practical software and web applications.
-        </p>
-        <p class="about-intro">
-            My technical experience spans Python, Java, JavaScript, C, C++, C#, HTML and CSS. I&rsquo;ve also worked with Flask, JavaFX, object-oriented programming, SQL databases (including MySQL and SQLite), REST APIs, Git, Unix/Linux and Bash scripting. My development skills include full-stack development, responsive web design, software testing and debugging.
-        </p>
-        <p class="about-intro">
-            I&rsquo;m always looking to strengthen my skills, explore new technologies and take on projects that challenge me to build better solutions.
-        </p>
-    </section>
-    {% endblock %}
-</body>
-</html>
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="about-page">
+    <p class="eyebrow">Get to know Frances</p>
+    <h1>About Me</h1>
+    <p class="about-intro">
+        Hi, I&rsquo;m Frances! I&rsquo;m a Computer Science undergraduate at the University of Dundee with an interest in building practical software and web applications.
+    </p>
+    <p class="about-intro">
+        My technical experience includes Python, Java, JavaScript, C, C++, C#, HTML and CSS, alongside Flask, JavaFX, SQL, REST APIs, Git, Unix/Linux and Bash. I&rsquo;m also developing my knowledge of machine learning, reinforcement learning and AI agent development.
+    </p>
+    <h2>Experience beyond the code</h2>
+    <p class="about-intro">
+        During my placement with the Department for Education, I collaborated on an internal application for creating and managing accessibility statements. I contributed to stakeholder interviews, requirements gathering, wireframing, prototyping and usability testing, as well as front-end development using HTML and Java. This strengthened my communication, teamwork, problem-solving and user-centred design skills.
+    </p>
+    <p class="about-intro">
+        I&rsquo;m keen to keep learning, take on challenging problems and grow as a software developer, particularly in building useful and accessible applications.
+    </p>
+</section>
+{% endblock %}

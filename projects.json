@@ -1,4 +1,36 @@
 [
-  [1, "Bulls & Cows", "game", "A number-guessing game where the player uses clues to work out the hidden number.", "Bulls & Cows.png", "Bulls & Cows.zip"],
-  [2, "To-Do List Manager", "tool", "A command-line to-do list manager built as a shell scripting project.", "To-Do.png", "todo.sh"]
+  [
+    1,
+    "Bulls & Cows",
+    "game",
+    "A number-guessing game where the player uses clues to work out the hidden number.",
+    "Bulls & Cows.png",
+    "Bulls & Cows.zip",
+    "Game logic, input handling and validation",
+    "Designed and developed independently as a personal project.",
+    "Applied problem-solving to implement the game rules and provide clear clue-based feedback."
+  ],
+  [
+    2,
+    "To-Do List Manager",
+    "tool",
+    "A command-line to-do list manager built as a shell scripting project.",
+    "To-Do.png",
+    "todo.sh",
+    "Bash, shell scripting and Unix/Linux",
+    "Worked on development and testing as part of a collaborative project.",
+    "Practised handling user input, task data and command-line options."
+  ],
+  [
+    3,
+    "Blackjack AI Simulator",
+    "ai",
+    "A collaborative Python simulator that compares five Blackjack agents, including rule-based, search, supervised-learning and reinforcement-learning approaches.",
+    "Blackjack.png",
+    null,
+    "Python, scikit-learn, matplotlib, machine learning and search algorithms",
+    "Contributed to the development and testing of the simulator and its AI-based strategies.",
+    "Explored different approaches to automated decision-making and gained experience comparing strategies through simulation results.",
+    "https://github.com/Frances06/Blackjack"
+  ]
 ]
