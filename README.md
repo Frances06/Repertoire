@@ -7,7 +7,7 @@
 A Flask-powered portfolio bringing together selected software projects, a little information about me, and a built-in music player.
 
 [![Python](https://img.shields.io/badge/Python-Flask-1f425f?logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-web%20app-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Jinja2](https://img.shields.io/badge/Jinja2-templates-B41717?logo=jinja&logoColor=white)](https://jinja.palletsprojects.com/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-interactive-f7df1e?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 </div>
