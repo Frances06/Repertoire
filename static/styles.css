@@ -968,3 +968,20 @@ main { display: block; width: min(1120px, 100%); margin: 0 auto; padding: clamp(
   outline: 3px solid currentColor;
   outline-offset: 3px;
 }
+
+
+/* CV download link styling */
+.cv-download {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--welcome-color);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.cv-download:hover { text-decoration: underline; }
+
+/* Keep project links readable in high-contrast mode. */
+:root[data-theme="high-contrast"] .project-link {
+  color: #000;
+}
